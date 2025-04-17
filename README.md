@@ -12,3 +12,5 @@ Reasons I like Dancing With the Stars
 [Learn more about this past season of Dancing With The Stars here!](https://en.wikipedia.org/wiki/Dancing_with_the_Stars_(American_TV_series)_season_33)
 
 Here is my work from [week 5](homework5.html)
+
+Here is the [link](blog.md) to my latest blod 
