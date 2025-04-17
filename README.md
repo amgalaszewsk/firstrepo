@@ -1,6 +1,6 @@
-#**Here is the description of the project:**
+# **Here is the description of the project:**
 
-##It is a new project about Dancing With The Stars
+## It is a new project about Dancing With The Stars
 
 Reasons I like Dancing With the Stars
 1. It is entertaining and always brings a smile to my face
