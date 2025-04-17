@@ -13,4 +13,4 @@ Reasons I like Dancing With the Stars
 
 Here is my work from [week 5](homework5.html)
 
-Here is the [link](blog.md) to my latest blod 
+Here is the [link](blog.md) to my latest blog
