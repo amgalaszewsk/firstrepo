@@ -1,0 +1,127 @@
+---
+title: "week 9"
+author: "Abby Galaszewski"
+date: "2025-03-20"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+
+ggplot(data=mpg,mapping=aes(displ,hwy))+
+  geom_point()+
+  theme(axis.text.y=element_text(angle = 90))
+```
+```{r}
+library(socviz)
+
+ggplot(data=organdata,mapping = aes(year,donors))+
+  geom_line()+
+  facet_wrap(~country)+
+  theme(axis.text.x = element_text(angle = 90))
+```
+```{r}
+library(dplyr)
+
+mpg %>% mutate(DISPL=case_when(displ>4~"high",displ<=4~"low")) %>% select(DISPL,everything())
+```
+```{r}
+mpg %>% mutate(type=case_when(year==1999~"old model",year==2008~"new model")) %>% select(type,everything())
+```
+```{r}
+mpg %>% 
+  mutate(CLASS=case_when(class=="compact"~"compact",class=="subcompact"~"compact",TRUE~"not compact")) %>% 
+  select(class, CLASS, everything())
+```
+```{r}
+mpg %>%
+  mutate(compact=case_when(class=="compact"~TRUE,class=="subcompact"~TRUE,TRUE~FALSE)) %>% select(compact,everything())
+```
+```{r}
+mpg %>% mutate(displ_type=case_when(displ<3~"low",displ>6~"high",displ<=3|displ<=6~"medium")) %>% select(displ_type,everything())
+```
+```{r}
+library(nycflights13)
+
+flights %>% mutate(status=case_when(dep_delay<=0~"on_time",dep_delay>0~"delayed",TRUE~"canceled")) %>% select(status,everything())
+```
+```{r}
+ggplot(mpg,aes(displ,hwy,color=factor(year)))+
+  geom_point(alpha=0.5)
+```
+```{r}
+data <- mpg %>% mutate(displ_type=case_when(displ<3~"low",
+                                    displ>6~"high",
+                                    displ<=3|displ<=6~"medium")) 
+
+factor(data$displ_type,levels = c("low","medium","high"))
+```
+```{r}
+diamonds %>% mutate(PRICE=case_when(price<2401~"regular",TRUE~"luxury"))%>%
+
+ggplot(aes(cut))+
+  geom_bar(aes(fill=factor(PRICE)))
+
+data<- mutate (diamonds,PRICE=factor(data$PRICE,levels = c("regular","luxury"),ordered=TRUE))
+
+ggplot(data)+
+  geom_bar(aes(cut,fill=PRICE))+
+  labs(caption = " 'regular' is when price<2401, 'luxury' for higher prices.")
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class,size=cyl))+
+  geom_point()+
+  scale_size_continuous(range=c(1,4))
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class,size=cyl))+
+  geom_point()+
+  scale_size_binned(range=c(1,5),breaks = c(6))
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,cty,size=displ))+
+  geom_point(alpha=0.3)+
+  scale_size_binned(breaks =c(5),range=c(0,5))
+```
+```{r}
+ggplot(data=mpg,mapping = aes(displ,hwy,color=class,size=drv))+
+  geom_point(alpha=0.5)+
+  scale_size_manual(values=c(1,3,1))
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class,size=class))+
+  geom_point(alpha=0.5)+
+  scale_size_manual(values=c(1,3,1,1,1,3,1))
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class))+
+  geom_point(alpha=0.75)+
+  scale_color_brewer(palette = "Pastel1")
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class))+
+  geom_point(alpha=0.75)+
+  scale_color_viridis_d(option="mako")
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=class))+
+  geom_point(alpha=0.75)+
+  scale_color_manual(values = c("pink","purple","lightblue","pink","black","purple","blue"))
+
+```
+```{r}
+ggplot(data=iris,mapping=aes(Sepal.Length,Sepal.Width,color=Species,shape=Species))+
+  geom_point()+
+  scale_color_brewer(palette = "Set2")
+```
+```{r}
+ggplot(data=mpg,mapping=aes(displ,hwy,color=cyl,shape=drv))+
+  geom_point(alpha=0.75)+
+  scale_color_gradient(low="pink",high="lightblue")
+```
+```{r}
+ggplot(data=iris,mapping=aes(Sepal.Length,Sepal.Width,color=Petal.Length))+
+  geom_point()+
+  scale_color_viridis_c(option="rocket")
+```
+
